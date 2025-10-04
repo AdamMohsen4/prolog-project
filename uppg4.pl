@@ -14,8 +14,8 @@ edge(b, e).
 edge(d, f).
 edge(a,f).
 
-path(Start, End, Path) 
-  % something here
+path(Start, End, Path) :-
+    path_helper(Start, End, [Start], Path).
 
 
 path_helper(Current, End, Visited, Path) :-
