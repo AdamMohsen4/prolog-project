@@ -17,7 +17,7 @@ edge(a, f).
 
 % Huvudpredikat
 path(Start, End, Path) :-
-    path_helper(Start, End, [Start], Path).
+    path_helper(Start, End, [Start], Path). 
 
 % fall: om nuvarande nod är slutnoden, är vi klara (och returnerar sökvägen)
 path_helper(Current, End, Visited, Path) :-
@@ -26,7 +26,7 @@ path_helper(Current, End, Visited, Path) :-
 
 % rekursivt fall: utforska grannar (liknande DFS)
 path_helper(Current, End, Visited, Path) :-
-      edge(Current, Next),
-      \+ member(Next, Visited), % om nästa nod inte har besökts
-      append(Visited, [Next], NewVisited),
-      path_helper(Next, End, NewVisited, Path).
+      edge(Current, Next),                      % 1. Hitta en granne (alla fall gnm backtracking)
+      \+ member(Next, Visited),                 % 2. Kontrollera om obesökt
+      append(Visited, [Next], NewVisited),      % 3. Lägg till i besökt lista
+      path_helper(Next, End, NewVisited, Path). % 4. Rekursivt från granne
