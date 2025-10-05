@@ -11,7 +11,7 @@ partstring([], 0, []).
 partstring([H|T], L, F) :- 
     append(F, _, [H|R]), 
     F \= [], 
-    my_length(R, L).
+    my_length(F, L).
 
 
 % om huvudet på listan inte är en del av delsträngen => fortsätt med resten av listan
