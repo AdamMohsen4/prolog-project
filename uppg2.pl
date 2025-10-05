@@ -13,3 +13,7 @@ remove_duplicates([H|T], E) :- member(H, T), remove_duplicates(T,E).
 % Fall 3: Om huvudet (H) INTE finns i resten av listan (T),
 % behåll H i resultatet och fortsätt med resten
 remove_duplicates([H|T], [H|E]) :- \+ member(H, T), remove_duplicates(T,E).
+
+
+% Varför kan man kalla remove_duplicates/2 för en funktion? 
+% Svar: Eftersom varje indata (en lista) ger exakt en utdata (en lista utan dubbletter).
