@@ -1,3 +1,8 @@
+% Hjälppredikat
+select (X ,[ X | T ] , T ) .
+select (X ,[ Y | T ] ,[ Y | R ]) : - select (X ,T , R ) .
+member (X , L ) : - select (X ,L , _ ) .
+
 % Fall 1: Listan är tom
 remove_duplicates([], []).
 
