@@ -9,7 +9,7 @@ partstring([], 0, []).
 
 % om huvudet på listan är en del av delsträngen => lägg till i delsträngen 
 partstring([H|T], L, F) :- 
-    append(F, _, [H|R]), 
+    append(F, _, [H|T]), 
     F \= [], 
     my_length(F, L).
 
