@@ -6,13 +6,11 @@ member (X , L ) : - select (X ,L , _ ) .
 % Fall 1: Listan är tom
 remove_duplicates([], []).
 
-% Fall 2: Om huvudet (H) finns i resten av listan (T), 
-% är det en dubblett - skippa H och fortsätt med resten
+% Fall 2: Om H finns i T → dubblett: hoppa över H
 remove_duplicates([H|T], E) :- member(H, T), remove_duplicates(T,E).
 
-% Fall 3: Om huvudet (H) INTE finns i resten av listan (T),
-% behåll H i resultatet och fortsätt med resten
-remove_duplicates([H|T], [H|E]) :- \+ member(H, T), remove_duplicates(T,E).
+% Fall 3: Om H inte finns i T → behåll H
+remove_duplicates([H|T], [|E]) :- \+ member(H, T), remove_duplicates(T,E). 
 
 
 % Varför kan man kalla remove_duplicates/2 för en funktion? 
