@@ -28,5 +28,5 @@ path_helper(Current, End, Visited, Path) :-
 path_helper(Current, End, Visited, Path) :-
       edge(Current, Next),                      % 1. Hitta en granne (alla fall gnm backtracking)
       \+ member(Next, Visited),                 % 2. Kontrollera om obesökt
-      append(Visited, [Next], NewVisited),      % 3. Lägg till i besökt lista
+      append(Visited, [Next], NewVisited),      % 3. Lägg till i väg (gammal väg + ny nod)
       path_helper(Next, End, NewVisited, Path). % 4. Rekursivt från granne
