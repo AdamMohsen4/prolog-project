@@ -1,17 +1,21 @@
 % Hjälppredikat
-select (X ,[ X | T ] , T ) .
-select (X ,[ Y | T ] ,[ Y | R ]) :- select (X ,T , R ) .
-member (X , L ) :- select (X ,L , _ ) . % Vill bara veta om den returnerar true eller false
+select(X, [X|T], T).
+select(X, [Y|T], [Y|R]) :- select(X, T, R).
+member(X, L) :- select(X, L, _).
 
-% Fall 1: Listan är tom
-remove_duplicates([], []).
+% Huvudpredikat - använder en ackumulator för att hålla koll på vad vi redan sett
+remove_duplicates(L, E) :-
+    remove_helper(L, [], E).
 
-% Fall 2: H finns i T → ta bort H
-remove_duplicates([H|T], E) :- member(H, T), remove_duplicates(T,E).
+% Basfall: tom lista
+remove_helper([], _, []).
 
-% Fall 3: H finns inte i T → behåll H
-remove_duplicates([H|T], [H|E]) :- \+ member(H, T), remove_duplicates(T,E).
+% Fall 1: H finns redan i Seen (ackumulatorn) → hoppa över H
+remove_helper([H|T], Seen, E) :-
+    member(H, Seen),
+    remove_helper(T, Seen, E).
 
-
-% Varför kan man kalla remove_duplicates/2 för en funktion? 
-% Svar: Eftersom varje indata (en lista) ger exakt en utdata (en lista utan dubbletter).
+% Fall 2: H finns INTE i Seen → behåll H och lägg till i Seen
+remove_helper([H|T], Seen, [H|E]) :-
+    \+ member(H, Seen),
+    remove_helper(T, [H|Seen], E).

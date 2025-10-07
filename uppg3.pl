@@ -8,8 +8,8 @@ my_length([_|T], N) :- my_length(T, N1), N is N1 + 1.
 partstring([], 0, []).
 
 % om huvudet på listan är en del av delsträngen => lägg till i delsträngen 
-partstring([H|T], L, F) :- 
-    append(F, _, [H|T]), 
+partstring([H|T], L, F) :-  
+    append(F, _, [H|T]),  
     F \= [], 
     my_length(F, L).
 
